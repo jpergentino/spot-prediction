@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Project name="project" author="" >
+<svs>
+  <sv name="_unknown_"/>
+  <sv name="_undefined_"/>
+  <sv name="_others_"/>
+<fct name="default function" type="Symbol" mt="PARTNER_QUERY" r="REUSE" t="MAX" symm="true">
+<qsym name="_unknown_">
+</qsym>
+<qsym name="_undefined_">
+</qsym>
+<qsym name="_others_">
+</qsym>
+</fct>
+</svs>
+<model>
+  <concept name="Execution">
+    <desc name="instance" type="Symbol" mult="false" >
+      <symbol value="c1.medium" />
+      <symbol value="c3.large" />
+      <symbol value="m1.medium" />
+      <symbol value="c1.xlarge" />
+<fct name="SimInstanceFunction" type="Symbol" mt="PARTNER_QUERY" r="REUSE" t="MAX" symm="true">
+<qsym name="c1.medium">
+</qsym>
+<qsym name="c3.large">
+</qsym>
+<qsym name="m1.medium">
+</qsym>
+<qsym name="c1.xlarge">
+</qsym>
+</fct>
+    </desc>
+    <desc name="dayOfWeek" type="Integer" min="1" max="7" mult="false" >
+      <fct name="SimExecutionDayFunction" type="Integer" ltype="SMOOTH_STEP_AT" lparam="0.0" rtype="SMOOTH_STEP_AT" rparam="0.0" mode="DIFFERENCE" symm="true" mt="PARTNER_QUERY" r="REUSE" t="MAX" />
+    </desc>
+    <desc name="hourOfDay" type="Integer" min="0" max="23" mult="false" >
+      <fct name="SimExecutionHourFunction" type="Integer" ltype="POLYNOMIAL_WITH" lparam="1.0" rtype="POLYNOMIAL_WITH" rparam="1.0" mode="DIFFERENCE" symm="true" mt="PARTNER_QUERY" r="REUSE" t="MAX" />
+    </desc>
+    <desc name="addition" type="Integer" min="0" max="100" mult="false" >
+      <fct name="default function" type="Integer" ltype="POLYNOMIAL_WITH" lparam="1.0" rtype="POLYNOMIAL_WITH" rparam="1.0" mode="DIFFERENCE" symm="true" mt="PARTNER_QUERY" r="REUSE" t="MAX" />
+    </desc>
+    <amalgam name="default function" type="EUCLIDEAN" active="true" >
+      <entry name="hourOfDay" active="true" fct="SimExecutionHourFunction" weight="1.0"/>
+      <entry name="instance" active="true" fct="SimInstanceFunction" weight="1.0"/>
+      <entry name="dayOfWeek" active="true" fct="SimExecutionDayFunction" weight="1.0"/>
+      <entry name="addition" active="true" fct="default function" weight="1.0"/>
+    </amalgam>
+  </concept>
+</model>
+<hierarchy>
+  <fct name="default function" type="Taxonomy" mt="PARTNER_QUERY" r="REUSE" t="MAX" qconfig="INNER_NODES_ANY" cconfig="INNER_NODES_ANY" top="inheritanceDesc" sim="0.0" symm="true" >
+    <node name="Execution" sim="1.0" parent="inheritanceDesc" />
+  </fct>
+</hierarchy>
+</Project>
